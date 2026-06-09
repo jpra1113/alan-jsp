@@ -31,3 +31,24 @@
 - `application`: 全域計數器、系統設定。
 - `out`: 頁面輸出流。
 - `pageContext`: 獲取其他 8 個物件的入口。
+
+## 5. 課後練習 (30m)
+請根據現有的 `lifecycle.jsp` 完成以下挑戰：
+
+### 挑戰 1：Page Scope 的侷限性
+- **目標**：在 JSP 中使用 `<% pageContext.setAttribute("pageMsg", "Hello Page"); %>` 設定一個值。
+- **實作**：在「即時儀表板」區塊新增一個項目，嘗試顯示 `${pageScope.pageMsg}`。
+- **思考**：當你點擊「設定身分」導致頁面跳轉（Redirect）後，這個 `pageMsg` 還會存在嗎？為什麼？
+
+### 挑戰 2：智慧瀏覽器偵測器
+- **目標**：利用 `request` 物件判斷使用者瀏覽器。
+- **實作**：在頁面底部新增一段邏輯，如果 `User-Agent` 包含 "Chrome"，則顯示「推薦使用 Chrome 瀏覽器」；若為其他則顯示「建議使用 Chromium 核心瀏覽器」。
+- **提示**：使用 `<% if(request.getHeader("User-Agent").contains("Chrome")) { ... } %>`。
+
+### 挑戰 3：實作「全域公告系統」
+- **目標**：練習 Application Scope 的讀寫。
+- **實作**：
+    1. 在 `lifecycle.jsp` 新增一個簡單的 `<form>`，內含一個名稱為 `news` 的文字輸入框。
+    2. 提交後，在 JSP 頂部邏輯區塊判斷：若 `request.getParameter("news")` 不為空，則將其存入 `application.setAttribute("system_news", newsValue)`。
+    3. 在頁面最上方顯示一個黃色區塊，內容為 `${applicationScope.system_news}`。
+- **驗證**：開啟兩個不同的瀏覽器（如 Chrome 與 Firefox），在一邊發布公告，觀察另一邊是否能即時看到更新。
