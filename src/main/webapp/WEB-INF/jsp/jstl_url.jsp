@@ -48,9 +48,10 @@
     <!-- 匯入外部資源 -->
     <div class="card">
         <div class="card-header">📥 2. 資源匯入 (c:import)</div>
-        <p>匯入本專案 <code>/docs/jstl.md</code> 的內容：</p>
+        <p>匯入本專案 <code>/docs/jstl_core.md</code> 的內容：</p>
         <div style="border:1px solid #ccc; padding:10px; background:#fafafa;">
-            <c:import url="/docs/jstl.md" var="mdContent" />
+            <%-- 解決亂碼：加入 charEncoding="UTF-8" 確保正確讀取中文字元 --%>
+            <c:import url="/docs/jstl_core.md" var="mdContent" charEncoding="UTF-8" />
             <pre><c:out value="${mdContent}" /></pre>
         </div>
         <small>也可匯入外部網站 (如 footer 片段)，但注意安全與效能。</small>

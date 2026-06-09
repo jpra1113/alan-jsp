@@ -69,6 +69,7 @@
 <body>
     <h1>Hello, Spring Boot with JSP!</h1>
 
+    <!-- 第一天課程 -->
     <div class="course-box">
         <h3>第一天：核心基礎與作用域</h3>
         <p>課程名稱：<span class="highlight">${courseName}</span></p>
@@ -84,6 +85,18 @@
         <c:if test="${isUserLoggedIn}">
             <p style="color: green;">狀態：使用者已登入</p>
         </c:if>
+    </div>
+
+    <!-- 第二天課程 -->
+    <div class="course-box">
+        <h3>第二天：JSP 標準標籤庫</h3>
+        <p>學習 JSTL 核心標籤、迭代、URL 處理與 AJAX 整合。</p>
+        <ul class="doc-list">
+            <li class="doc-item" data-filename="jstl_core">jstl_core.md</li>
+            <li class="doc-item" data-filename="jstl_iteration">jstl_iteration.md</li>
+            <li class="doc-item" data-filename="jstl_url">jstl_url.md</li>
+            <li class="doc-item" data-filename="jstl_ajax">jstl_ajax.md</li>
+        </ul>
     </div>
 
     <!-- Markdown 預覽區塊 -->
@@ -149,6 +162,7 @@
                 loadDropdown();
             });
 
+            // 通用文件點擊事件 (第一、二天的 doc-item 都會觸發)
             $('.doc-item').click(function () {
                 const fileName = $(this).data('filename');
                 loadMarkdownContent(fileName);

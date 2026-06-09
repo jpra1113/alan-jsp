@@ -22,15 +22,16 @@
       <nav>
         <h3>Day 1：核心基礎與作用域</h3>
         <ul>
-          <li><a href="#" onclick="loadCourse('${pageContext.request.contextPath}/learning/jsp/lifecycle')">JSP
+          <li><a href="#" onclick="loadCourse('${pageContext.request.contextPath}/learning/jsp/lifecycle')">1. JSP
               生命週期與隱含物件</a></li>
-          <li><a href="#" onclick="loadCourse('${pageContext.request.contextPath}/learning/jsp/scopes')">四大作用域</a></li>
-          <li><a href="#" onclick="loadCourse('${pageContext.request.contextPath}/learning/jsp/el')">EL
+          <li><a href="#" onclick="loadCourse('${pageContext.request.contextPath}/learning/jsp/scopes')">2. 四大作用域</a>
+          </li>
+          <li><a href="#" onclick="loadCourse('${pageContext.request.contextPath}/learning/jsp/el')">3. EL
               (Expression Language，表達式語言)</a></li>
-          <li><a href="#" onclick="loadCourse('${pageContext.request.contextPath}/learning/jsp/scriptlet')">Scriptlet
+          <li><a href="#" onclick="loadCourse('${pageContext.request.contextPath}/learning/jsp/scriptlet')">4. Scriptlet
               傳統語法實戰</a></li>
         </ul>
-        <h3>Day 2：進階邏輯、標籤庫與 AJAX</h3>
+        <h3>Day 2：JSP 標準標籤庫(JSTL：JavaServer Pages Standard Tag Library)</h3>
         <ul>
           <li><a href="#" onclick="loadCourse('${pageContext.request.contextPath}/learning/jsp/jstl/core')">1.
               核心標籤入門</a></li>
