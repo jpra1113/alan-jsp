@@ -20,8 +20,10 @@
           <li><a href="#" onclick="loadCourse('${pageContext.request.contextPath}/learning/jsp/lifecycle')">JSP
               生命週期與隱含物件</a></li>
           <li><a href="#" onclick="loadCourse('${pageContext.request.contextPath}/learning/jsp/scopes')">四大作用域</a></li>
-          <li><a href="#" onclick="loadCourse('${pageContext.request.contextPath}/learning/jsp/scriptlet')">從 Scriptlet
-              到 EL</a></li>
+          <li><a href="#" onclick="loadCourse('${pageContext.request.contextPath}/learning/jsp/el')">EL
+              (Expression Language，表達式語言)</a></li>
+          <li><a href="#" onclick="loadCourse('${pageContext.request.contextPath}/learning/jsp/scriptlet')">Scriptlet
+              傳統語法實戰</a></li>
         </ul>
         <h3>Day 2：進階邏輯、標籤庫與 AJAX</h3>
         <ul>

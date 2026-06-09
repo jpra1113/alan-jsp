@@ -25,7 +25,6 @@ public class ApiController {
         options.add(createOption("2", "前端技術 (JavaScript)"));
         options.add(createOption("3", "資料庫管理 (SQL)"));
         options.add(createOption("4", "雲端佈署 (Docker)"));
-        options.add(createOption("5", "test"));
 
         return options;
     }
