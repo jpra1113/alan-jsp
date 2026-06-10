@@ -1,3 +1,4 @@
+<%-- /data/data/com.termux/files/home/alan-jsp/src/main/webapp/WEB-INF/jsp/welcome.jsp --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
@@ -58,10 +59,18 @@
         }
 
         /* Markdown 顯示容器樣式 */
-        #markdown-viewer {
+        #markdown-viewer,
+        #fixed-jsp-content {
             margin-top: 20px;
             min-height: 200px;
             border-top: 3px solid #3498db;
+        }
+
+        .section-title {
+            margin-top: 30px;
+            color: #2c3e50;
+            border-left: 5px solid #3498db;
+            padding-left: 10px;
         }
     </style>
 </head>
@@ -104,6 +113,12 @@
         <p style="color: #999;">請從上方清單選擇一份文件...</p>
     </div>
 
+    <!-- 固定顯示的內容區塊 -->
+    <h3 class="section-title">核心知識點回顧：JSP 詳解</h3>
+    <div id="fixed-jsp-content" class="course-box markdown-body">
+        <p>核心筆記載入中...</p>
+    </div>
+
     <p>目前系統時間: <%= new java.util.Date() %></p>
 
     <script>
@@ -131,13 +146,12 @@
                 });
             }
 
-            // 2. 新增：Markdown 讀取與渲染邏輯
-            function loadMarkdownContent(fileName) {
-                // 假設後端有一個 API 可以讀取 docs/ 底下的內容
-                // 若為靜態資源映射，可直接使用 ${pageContext.request.contextPath}/docs/
+            // 2. 新增：Markdown 讀取與渲染邏輯 (增加 targetSelector 參數)
+            function loadMarkdownContent(fileName, targetSelector) {
+                const selector = targetSelector || '#markdown-viewer';
                 const url = '${pageContext.request.contextPath}/api/docs/content?name=' + fileName;
 
-                $('#markdown-viewer').html('<p>載入中...</p>');
+                $(selector).html('<p>載入中...</p>');
 
                 $.ajax({
                     url: url,
@@ -146,10 +160,10 @@
                     success: function (mdContent) {
                         // 使用 marked 轉換 markdown 為 html
                         const htmlContent = marked.parse(mdContent);
-                        $('#markdown-viewer').html(htmlContent);
+                        $(selector).html(htmlContent);
                     },
                     error: function (err) {
-                        $('#markdown-viewer').html('<p style="color:red;">讀取文件 [' + fileName + '.md] 失敗，請確認後端 API 設定。</p>');
+                        $(selector).html('<p style="color:red;">讀取文件 [' + fileName + '.md] 失敗，請確認後端 API 設定。</p>');
                     }
                 });
             }
@@ -157,12 +171,15 @@
             // 初始化
             loadDropdown();
 
+            // 固定加載 jsp.md 到下方區塊
+            loadMarkdownContent('jsp', '#fixed-jsp-content');
+
             // 事件綁定
             $('#loadBtn').click(function () {
                 loadDropdown();
             });
 
-            // 通用文件點擊事件 (第一、二天的 doc-item 都會觸發)
+            // 通用文件點擊事件 (第一、二天的 doc-item 都會觸發，渲染至動態預覽區)
             $('.doc-item').click(function () {
                 const fileName = $(this).data('filename');
                 loadMarkdownContent(fileName);
