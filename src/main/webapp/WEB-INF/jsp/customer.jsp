@@ -92,9 +92,9 @@
                                     </strong></td>
                                 <td>${cust.age}</td>
                                 <td>
-                                    <c:if test="${cust.gender == 'M'}"><span class="badge"
+                                    <c:if test="${cust.gender == 'Male'}"><span class="badge"
                                             style="background:#3498db">男</span></c:if>
-                                    <c:if test="${cust.gender == 'F'}"><span class="badge"
+                                    <c:if test="${cust.gender == 'Female'}"><span class="badge"
                                             style="background:#e74c3c">女</span></c:if>
                                     <c:if test="${cust.gender != 'M' && cust.gender != 'F'}">${cust.gender}</c:if>
                                 </td>
