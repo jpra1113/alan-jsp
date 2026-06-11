@@ -1,4 +1,3 @@
-<%-- /data/data/com.termux/files/home/alan-jsp/src/main/webapp/WEB-INF/jsp/index.jsp --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
@@ -12,7 +11,7 @@
 
 <body>
   <div class="layout-container">
-    <aside class="sidebar">
+    <aside class="sidebar" id="sidebar">
       <h2 onclick="window.location.href='${pageContext.request.contextPath}/'">課程目錄</h2>
       <nav>
         <h3 onclick="toggleMenu(this)">Day 1：基礎與作用域</h3>
@@ -76,6 +75,7 @@
     </aside>
 
     <main class="content-area">
+      <button class="toggle-btn" onclick="toggleSidebar()">☰ 選單</button>
       <iframe id="courseFrame" src="${pageContext.request.contextPath}/welcome" title="課程內容"></iframe>
     </main>
   </div>
@@ -89,6 +89,11 @@
       header.classList.toggle('collapsed');
       const menu = header.nextElementSibling;
       menu.classList.toggle('collapsed');
+    }
+
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      sidebar.classList.toggle('collapsed');
     }
   </script>
 </body>
