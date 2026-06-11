@@ -23,10 +23,16 @@
               onclick="loadCourse('${pageContext.request.contextPath}/learning/jsp/scopes')">2. 四大作用域</a></li>
           <li><a href="javascript:void(0)" onclick="loadCourse('${pageContext.request.contextPath}/learning/jsp/el')">3.
               EL 表達式</a></li>
+          <li><a href="javascript:void(0)"
+              onclick="loadCourse('${pageContext.request.contextPath}/learning/jsp/scriptlet')">4. Scriptlet
+              傳統語法實戰</a></li>
         </ul>
 
         <h3 onclick="toggleMenu(this)">Day 2：JSTL 核心標籤</h3>
         <ul id="jstl-menu">
+          <li><a href="javascript:void(0)"
+              onclick="loadCourse('${pageContext.request.contextPath}/learning/jsp/scriptlet-jstl')">0.
+              傳統語法實戰(JSTL 版本)</a></li>
           <li><a href="javascript:void(0)"
               onclick="loadCourse('${pageContext.request.contextPath}/learning/jsp/jstl/forEach')">1. c:forEach (迭代)</a>
           </li>
