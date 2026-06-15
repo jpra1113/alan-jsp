@@ -113,6 +113,13 @@
             fetch(base + '/jasperReport/policies?customerId=' + customerId)
                 .then(resp => resp.json())
                 .then(data => {
+                    console.log('API Response:', data);
+                    console.log('Data length:', data ? data.length : 'null');
+                    if (data && data.length > 0) {
+                        console.log('First item:', data[0]);
+                        console.log('Keys:', Object.keys(data[0]));
+                    }
+
                     const tbody = document.querySelector('#policiesTable tbody');
                     tbody.innerHTML = '';
                     if (!data || data.length === 0) {
@@ -120,28 +127,69 @@
                         document.getElementById('policiesCard').style.display = 'block';
                         return;
                     }
-                    data.forEach(p => {
+                    data.forEach((p, index) => {
                         const tr = document.createElement('tr');
-                        tr.innerHTML = `<td>${p.policyNumber || ''}</td>` +
-                            `<td>${p.type || ''}</td>` +
-                            `<td>${p.sumInsured || ''}</td>` +
-                            `<td>${p.premiumAmount || ''}</td>` +
-                            `<td>${p.startDate || ''}</td>` +
-                            `<td>${p.endDate || ''}</td>` +
-                            `<td>${p.status || ''}</td>`;
+                        // Safely convert null/undefined to empty string, and format numbers
+                        const policyNumber = p.policyNumber || '';
+                        const type = p.type || '';
+                        const sumInsured = p.sumInsured != null ? p.sumInsured : '';
+                        const premiumAmount = p.premiumAmount != null ? parseFloat(p.premiumAmount).toFixed(2) : '';
+                        const startDate = p.startDate || '';
+                        const endDate = p.endDate || '';
+                        const status = p.status || '';
+
+                        console.log(`Row ${index}:`, { policyNumber, type, sumInsured, premiumAmount, startDate, endDate, status });
+
+                        const tdPolicyNumber = document.createElement('td');
+                        tdPolicyNumber.textContent = policyNumber;
+                        tr.appendChild(tdPolicyNumber);
+
+                        const tdType = document.createElement('td');
+                        tdType.textContent = type;
+                        tr.appendChild(tdType);
+
+                        const tdSumInsured = document.createElement('td');
+                        tdSumInsured.textContent = sumInsured;
+                        tr.appendChild(tdSumInsured);
+
+                        const tdPremiumAmount = document.createElement('td');
+                        tdPremiumAmount.textContent = premiumAmount;
+                        tr.appendChild(tdPremiumAmount);
+
+                        const tdStartDate = document.createElement('td');
+                        tdStartDate.textContent = startDate;
+                        tr.appendChild(tdStartDate);
+
+                        const tdEndDate = document.createElement('td');
+                        tdEndDate.textContent = endDate;
+                        tr.appendChild(tdEndDate);
+
+                        const tdStatus = document.createElement('td');
+                        tdStatus.textContent = status;
+                        tr.appendChild(tdStatus);
+
                         tbody.appendChild(tr);
                     });
                     document.getElementById('policiesCard').style.display = 'block';
                 })
                 .catch(err => {
+                    console.error('取得保單資料失敗', err);
                     alert('取得保單資料失敗');
                 });
         }
 
         function loadReport(customerId) {
-            document.getElementById('reportFrame').src = base + '/jasperReport/view?customerId=' + customerId;
-            document.getElementById('reportFrameContainer').style.display = 'block';
-            window.scrollTo(0, document.getElementById('reportFrameContainer').offsetTop - 20);
+            fetch(base + '/jasperReport/view-embed?customerId=' + customerId)
+                .then(resp => resp.json())
+                .then(data => {
+                    document.getElementById('reportFrame').src = data.pdfData;
+                    document.getElementById('reportFrameContainer').style.display = 'block';
+                    window.scrollTo(0, document.getElementById('reportFrameContainer').offsetTop - 20);
+                })
+                .catch(err => {
+                    console.error('取得報表失敗', err);
+                    alert('取得報表失敗');
+                });
         }
     </script>
 
