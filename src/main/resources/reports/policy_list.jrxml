@@ -1,79 +1,53 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd"
-    name="policy_list" pageWidth="595" pageHeight="842" columnWidth="515" leftMargin="40" rightMargin="40" topMargin="50" bottomMargin="50">
-
-    <parameter name="ReportTitle" class="java.lang.String"/>
-
-    <field name="policyNumber" class="java.lang.String"/>
-    <field name="type" class="java.lang.String"/>
-    <field name="sumInsured" class="java.lang.Integer"/>
-    <field name="premiumAmount" class="java.lang.Double"/>
-    <field name="startDate" class="java.lang.String"/>
-    <field name="endDate" class="java.lang.String"/>
-    <field name="status" class="java.lang.String"/>
-
-    <title>
-        <band height="50">
-            <staticText>
-                <reportElement x="0" y="10" width="515" height="30"/>
-                <textElement textAlignment="Center" verticalAlignment="Middle">
-                    <font size="16" isBold="true"/>
-                </textElement>
-                <text><![CDATA[$P{ReportTitle}]]></text>
-            </staticText>
-        </band>
-    </title>
-
-    <columnHeader>
-        <band height="20">
-            <staticText>
-                <reportElement x="0" y="0" width="120" height="20"/>
-                <text><![CDATA[Policy No.]]></text>
-            </staticText>
-            <staticText>
-                <reportElement x="130" y="0" width="100" height="20"/>
-                <text><![CDATA[Type]]></text>
-            </staticText>
-            <staticText>
-                <reportElement x="240" y="0" width="80" height="20"/>
-                <text><![CDATA[Sum Insured]]></text>
-            </staticText>
-            <staticText>
-                <reportElement x="330" y="0" width="80" height="20"/>
-                <text><![CDATA[Premium]]></text>
-            </staticText>
-            <staticText>
-                <reportElement x="420" y="0" width="95" height="20"/>
-                <text><![CDATA[Status]]></text>
-            </staticText>
-        </band>
-    </columnHeader>
-
-    <detail>
-        <band height="20">
-            <textField>
-                <reportElement x="0" y="0" width="120" height="20"/>
-                <textFieldExpression><![CDATA[$F{policyNumber}]]></textFieldExpression>
-            </textField>
-            <textField>
-                <reportElement x="130" y="0" width="100" height="20"/>
-                <textFieldExpression><![CDATA[$F{type}]]></textFieldExpression>
-            </textField>
-            <textField>
-                <reportElement x="240" y="0" width="80" height="20"/>
-                <textFieldExpression><![CDATA[$F{sumInsured}]]></textFieldExpression>
-            </textField>
-            <textField pattern="#,#00.00">
-                <reportElement x="330" y="0" width="80" height="20"/>
-                <textFieldExpression><![CDATA[$F{premiumAmount}]]></textFieldExpression>
-            </textField>
-            <textField>
-                <reportElement x="420" y="0" width="95" height="20"/>
-                <textFieldExpression><![CDATA[$F{status}]]></textFieldExpression>
-            </textField>
-        </band>
-    </detail>
-
+<!-- Created with Jaspersoft Studio version 7.0.6.final using JasperReports Library version 7.0.6-5d2a603fdc6b3db8f842a83383e594f41891534d  -->
+<jasperReport name="policy_list" language="java" pageWidth="595" pageHeight="842" columnWidth="515" leftMargin="40" rightMargin="40" topMargin="50" bottomMargin="50" uuid="54fdce42-a35a-458f-ad17-849c2100a9fa">
+	<parameter name="ReportTitle" class="java.lang.String"/>
+	<field name="policyNumber" class="java.lang.String"/>
+	<field name="type" class="java.lang.String"/>
+	<field name="sumInsured" class="java.lang.Integer"/>
+	<field name="premiumAmount" class="java.lang.Double"/>
+	<field name="startDate" class="java.lang.String"/>
+	<field name="endDate" class="java.lang.String"/>
+	<field name="status" class="java.lang.String"/>
+	<title height="50">
+		<element kind="staticText" uuid="c7c85209-c85e-47ab-a124-633b2fac0aa4" x="0" y="10" width="515" height="30" fontSize="16.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[$P{ReportTitle}]]></text>
+		</element>
+	</title>
+	<columnHeader height="25">
+		<element kind="staticText" uuid="82b84826-694d-4a59-b5c0-49de74d83fdd" x="0" y="0" width="120" height="20">
+			<text><![CDATA[Policy No.]]></text>
+		</element>
+		<element kind="staticText" uuid="59520498-7bf6-4079-8c19-4dc7fc489877" x="130" y="0" width="100" height="20">
+			<text><![CDATA[Type]]></text>
+		</element>
+		<element kind="staticText" uuid="d767971f-5761-400a-9926-b09f47947e4e" x="240" y="0" width="80" height="20">
+			<text><![CDATA[Sum Insured]]></text>
+		</element>
+		<element kind="staticText" uuid="a4513bc0-a674-4668-be37-8caaafd30508" x="330" y="0" width="80" height="20">
+			<text><![CDATA[Premium]]></text>
+		</element>
+		<element kind="staticText" uuid="1a7d0b4b-3cf2-4fe9-bd49-521784bc1cff" x="420" y="0" width="95" height="20">
+			<text><![CDATA[Status]]></text>
+		</element>
+	</columnHeader>
+	<detail>
+		<band height="25">
+			<element kind="textField" uuid="94634227-7c86-4075-a8ea-25c8ffcfea84" x="0" y="0" width="120" height="20">
+				<expression><![CDATA[$F{policyNumber}]]></expression>
+			</element>
+			<element kind="textField" uuid="eef0b5d8-4fc7-4e46-9e14-adb2de4f9c26" x="130" y="0" width="100" height="20">
+				<expression><![CDATA[$F{type}]]></expression>
+			</element>
+			<element kind="textField" uuid="cc0bfe53-bf46-4544-a5b2-f01afa8f26fb" x="240" y="0" width="80" height="20">
+				<expression><![CDATA[$F{sumInsured}]]></expression>
+			</element>
+			<element kind="textField" uuid="96b0cb99-ce37-49af-ae3d-fc564c51ddd4" x="330" y="0" width="80" height="20" pattern="#,#00.00">
+				<expression><![CDATA[$F{premiumAmount}]]></expression>
+			</element>
+			<element kind="textField" uuid="36f3d7c0-7ab8-46b8-81d5-6c35c946a144" x="420" y="0" width="95" height="20">
+				<expression><![CDATA[$F{status}]]></expression>
+			</element>
+		</band>
+	</detail>
+	<summary/>
 </jasperReport>
