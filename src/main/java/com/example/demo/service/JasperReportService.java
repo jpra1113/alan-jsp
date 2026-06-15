@@ -14,6 +14,7 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.model.Customer;
+import com.example.demo.model.Policy;
 
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperExportManager;
@@ -38,7 +39,40 @@ public class JasperReportService {
         }
     }
 
-    public String generateAndSaveCustomerListPdf(List<Customer> customers, String reportTitle, String outputDir) throws Exception {
+    public byte[] generatePolicyListPdf(List<Policy> policies, String reportTitle) throws Exception {
+        JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(policies);
+
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("ReportTitle", reportTitle);
+
+        try (InputStream reportStream = new ClassPathResource("reports/policy_list.jrxml").getInputStream()) {
+            JasperReport jasperReport = JasperCompileManager.compileReport(reportStream);
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
+            return JasperExportManager.exportReportToPdf(jasperPrint);
+        }
+    }
+
+    public String generateAndSavePolicyListPdf(List<Policy> policies, String reportTitle, String outputDir)
+            throws Exception {
+        byte[] pdfBytes = generatePolicyListPdf(policies, reportTitle);
+
+        Path outputPath = Paths.get(outputDir);
+        if (!Files.exists(outputPath)) {
+            Files.createDirectories(outputPath);
+        }
+
+        String fileName = "policy_report_" + System.currentTimeMillis() + ".pdf";
+        File outputFile = new File(outputDir, fileName);
+
+        try (FileOutputStream fos = new FileOutputStream(outputFile)) {
+            fos.write(pdfBytes);
+        }
+
+        return outputFile.getAbsolutePath();
+    }
+
+    public String generateAndSaveCustomerListPdf(List<Customer> customers, String reportTitle, String outputDir)
+            throws Exception {
         byte[] pdfBytes = generateCustomerListPdf(customers, reportTitle);
 
         Path outputPath = Paths.get(outputDir);
