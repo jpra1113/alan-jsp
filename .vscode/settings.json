@@ -21,5 +21,6 @@
     "**/.mvn": true,
     "**/target": true,
     "**/mvnw.cmd": true
-  }
+  },
+  "java.configuration.updateBuildConfiguration": "interactive"
 }
