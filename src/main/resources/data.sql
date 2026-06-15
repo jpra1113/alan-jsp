@@ -113,8 +113,8 @@ INSERT INTO policies (policy_number, type, sum_insured, customer_id, start_date,
 ('POL-00089', 'ACCIDENT', 7000000, 9, '2024-01-01', '2025-01-01', 'ACTIVE', 550.0, 'MONTHLY', 'BR001', 'AG88', '2024-01-01', '2025-01-01', 1, '水淹七軍意外險', '周倉', 'TWD', 'LOW', TRUE, '續保'),
 ('POL-00090', 'ANNUITY', 5000000, 9, '2018-06-01', '2038-06-01', 'ACTIVE', 100000.0, 'ANNUAL', 'BR006', 'AG89', '2018-06-01', '2038-06-01', 20, '青龍年金', '關羽本人', 'TWD', 'LOW', TRUE, '晚年'),
 -- 客戶 10 (張飛) 的 10 筆保單
-('POL-00091', 'LIFE', 10000000, 10, '2016-01-01', '2036-01-01', 'ACTIVE', 50000.0, 'ANNUAL', 'BR002', 'AG90', '2016-01-01', '2036-01-01', 20, '猛將終身壽險', '張苞', 'TWD', 'LOW', TRUE, '家業傳承'),
-('POL-00092', 'HEALTH', 2500000, 10, '2021-01-01', '2026-01-01', 'ACTIVE', 15000.0, 'ANNUAL', 'BR001', 'AG91', '2021-01-01', '2026-01-01', 5, '丈八蛇矛醫療險', '夏侯氏', 'TWD', 'MEDIUM', TRUE, '五年定期'),
+('POL-00091', 'LIFE', 1000000, 10, '2016-01-01', '2036-01-01', 'ACTIVE', 50000.0, 'ANNUAL', 'BR002', 'AG90', '2016-01-01', '2036-01-01', 20, '猛將終身壽險', '張苞', 'TWD', 'LOW', TRUE, '家業傳承'),
+('POL-00092', 'HEALTH', 2500000, 10, '2021-01-01', '2026-01-01', 'ACTIVE', 15000.0, 'ANNUAL', 'BR001', 'AG91', '2021-01-01', '2026-01-01', 5, '丈八蛇矛醫療險', '夏侯氏', 'TWD', 'MEDIUM', TRUE, '五年期'),
 ('POL-00093', 'ACCIDENT', 9000000, 10, '2023-06-01', '2024-06-01', 'EXPIRED', 700.0, 'MONTHLY', 'BR001', 'AG92', '2023-06-01', '2024-06-01', 1, '長坂坡意外險', '劉備', 'TWD', 'HIGH', FALSE, '一年期'),
 ('POL-00094', 'INVESTMENT', 1500000, 10, '2020-01-01', '2030-01-01', 'ACTIVE', 8000.0, 'MONTHLY', 'BR003', 'AG93', '2020-01-01', '2030-01-01', 10, '巴西郡開發基金', '張遵', 'TWD', 'MEDIUM', TRUE, '增值'),
 ('POL-00095', 'CRITICAL_ILLNESS', 1800000, 10, '2022-03-01', '2027-03-01', 'ACTIVE', 9000.0, 'ANNUAL', 'BR004', 'AG94', '2022-03-01', '2027-03-01', 5, '大喝重疾險', '關羽', 'TWD', 'MEDIUM', TRUE, '五年期'),
@@ -123,3 +123,16 @@ INSERT INTO policies (policy_number, type, sum_insured, customer_id, start_date,
 ('POL-00098', 'LIFE', 12000000, 10, '2022-01-01', '2042-01-01', 'ACTIVE', 60000.0, 'ANNUAL', 'BR002', 'AG97', '2022-01-01', '2042-01-01', 20, '二十年定期壽險', '張苞', 'TWD', 'LOW', TRUE, '保障'),
 ('POL-00099', 'ACCIDENT', 6000000, 10, '2024-04-01', '2025-04-01', 'ACTIVE', 500.0, 'MONTHLY', 'BR001', 'AG98', '2024-04-01', '2025-04-01', 1, '猛將意外險', '嚴顏', 'TWD', 'LOW', TRUE, '續保'),
 ('POL-00100', 'ANNUITY', 4000000, 10, '2019-01-01', '2039-01-01', 'ACTIVE', 80000.0, 'ANNUAL', 'BR006', 'AG99', '2019-01-01', '2039-01-01', 20, '翼德年金', '張飛本人', 'TWD', 'LOW', TRUE, '退休金');
+
+-- 插入 1對多 的保單詳情細項
+INSERT INTO policy_details (policy_id, detail_name, detail_value) VALUES
+(1, 'Deductible (自負額)', 'TWD 10,000 per claim'),
+(1, 'Co-insurance (自付成數)', '10% self-pay'),
+(1, 'Room Limit (每日病房限額)', 'TWD 2,000 per day'),
+(2, 'Death Benefit (身故給付)', 'TWD 3,000,000'),
+(2, 'Accidental Benefit (意外增額)', 'TWD 1,000,000'),
+(3, 'Medical Reimbursement (實支實付上限)', 'Up to TWD 50,000'),
+(4, 'Surgical Limit (手術最高限額)', 'TWD 150,000 per surgery'),
+(11, 'Death Benefit (身故保證)', 'TWD 5,000,000'),
+(11, 'Terminal Illness (生命末期提前給付)', 'TWD 2,500,000'),
+(12, 'ICU Daily Limit (加護病房日額)', 'TWD 5,000 per day');

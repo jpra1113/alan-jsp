@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS policy_details;
 DROP TABLE IF EXISTS policies;
 DROP TABLE IF EXISTS customers;
 
@@ -40,4 +41,12 @@ CREATE TABLE policies (
     remarks VARCHAR(255),                  -- 備註
     create_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- 建立時間
     FOREIGN KEY (customer_id) REFERENCES customers(id)
+);
+
+CREATE TABLE policy_details (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,  -- 明細流水號
+    policy_id BIGINT,                      -- 保單ID (外鍵)
+    detail_name VARCHAR(150) NOT NULL,     -- 明細項目名稱
+    detail_value VARCHAR(255),             -- 明細內容說明
+    FOREIGN KEY (policy_id) REFERENCES policies(id)
 );

@@ -1,5 +1,7 @@
 package com.example.demo.model;
 
+import java.util.List;
+
 public class Policy {
     private Long id;
     private String policyNumber;
@@ -23,6 +25,9 @@ public class Policy {
     private boolean autoRenew;
     private String remarks;
     private String createTime;
+    
+    // 一對多關聯：保單詳情明細
+    private List<PolicyDetail> details;
 
     public Policy() {}
 
@@ -77,4 +82,12 @@ public class Policy {
     public void setRemarks(String remarks) { this.remarks = remarks; }
     public String getCreateTime() { return createTime; }
     public void setCreateTime(String createTime) { this.createTime = createTime; }
+
+    public List<PolicyDetail> getDetails() {
+        return details;
+    }
+
+    public void setDetails(List<PolicyDetail> details) {
+        this.details = details;
+    }
 }

@@ -52,6 +52,29 @@ public class JasperReportService {
         }
     }
 
+    /**
+     * 新增：編譯主報表與子報表，並返回保單詳細 PDF 報表位元組
+     */
+    public byte[] generatePolicyDetailsPdf(List<Policy> policies, String reportTitle) throws Exception {
+        JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(policies);
+
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("ReportTitle", reportTitle);
+
+        try (InputStream subreportStream = new ClassPathResource("reports/policy_details_subreport.jrxml").getInputStream();
+             InputStream reportStream = new ClassPathResource("reports/policy_details.jrxml").getInputStream()) {
+            
+            // Runtime 動態編譯子報表並作為 Parameter 傳入主報表
+            JasperReport subReport = JasperCompileManager.compileReport(subreportStream);
+            parameters.put("DetailSubreport", subReport);
+
+            // 編譯主報表並填寫數據
+            JasperReport mainReport = JasperCompileManager.compileReport(reportStream);
+            JasperPrint jasperPrint = JasperFillManager.fillReport(mainReport, parameters, dataSource);
+            return JasperExportManager.exportReportToPdf(jasperPrint);
+        }
+    }
+
     public String generateAndSavePolicyListPdf(List<Policy> policies, String reportTitle, String outputDir)
             throws Exception {
         byte[] pdfBytes = generatePolicyListPdf(policies, reportTitle);

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 7.0.6.final using JasperReports Library version 7.0.6-5d2a603fdc6b3db8f842a83383e594f41891534d  -->
+<jasperReport name="policy_details_subreport" language="java" pageWidth="495" pageHeight="842" columnWidth="495" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="e62fc0fb-2e70-47cb-8c63-4ba977823f66">
+	<!-- 定義子報表顯示欄位 -->
+	<field name="detailName" class="java.lang.String"/>
+	<field name="detailValue" class="java.lang.String"/>
+	<columnHeader height="20">
+		<element kind="staticText" uuid="b2ff717f-f772-4d2d-bc48-bfb81f120894" x="0" y="0" width="150" height="15" fontSize="10.0" bold="true" forecolor="#4A4A4A">
+			<text><![CDATA[Detail Item]]></text>
+		</element>
+		<element kind="staticText" uuid="551db8c1-17b8-4c37-a162-856c9a29eb49" x="160" y="0" width="335" height="15" fontSize="10.0" bold="true" forecolor="#4A4A4A">
+			<text><![CDATA[Detail Description]]></text>
+		</element>
+	</columnHeader>
+	<detail>
+		<band height="18">
+			<element kind="textField" uuid="30b8095b-3b36-4c4f-a9cb-f8232924376c" x="0" y="0" width="150" height="15" fontSize="9.0" forecolor="#2D2D2D">
+				<expression><![CDATA[$F{detailName}]]></expression>
+			</element>
+			<element kind="textField" uuid="589df464-bca5-408a-bca6-53860ea0b0e9" x="160" y="0" width="335" height="15" fontSize="9.0" forecolor="#2D2D2D">
+				<expression><![CDATA[$F{detailValue}]]></expression>
+			</element>
+		</band>
+	</detail>
+</jasperReport>
