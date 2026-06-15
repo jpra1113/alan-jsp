@@ -9,8 +9,8 @@
 	<field name="endDate" class="java.lang.String"/>
 	<field name="status" class="java.lang.String"/>
 	<title height="50">
-		<element kind="staticText" uuid="c7c85209-c85e-47ab-a124-633b2fac0aa4" x="0" y="10" width="515" height="30" fontSize="16.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
-			<text><![CDATA[$P{ReportTitle}]]></text>
+		<element kind="textField" uuid="a2a1d2cc-4048-4ca3-b3a0-90352a4b508d" x="0" y="10" width="515" height="30" fontSize="16.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<expression><![CDATA[$P{ReportTitle}]]></expression>
 		</element>
 	</title>
 	<columnHeader height="25">
